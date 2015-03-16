@@ -225,11 +225,14 @@ main(int argc, char **argv)
 	}
 
 	else {
+		privateKey = (char**)calloc(2, sizeof(char*));
 		vg_encode_address(EC_KEY_get0_public_key(pkey),
 				  EC_KEY_get0_group(pkey),
 				  addrtype, ecprot);
+		privateKey[0]=ecprot;
 		printf("Address: %s\n", ecprot);
 		vg_encode_privkey(pkey, privtype, ecprot);
+		privateKey[1]=ecprot;
 		printf("Privkey: %s\n", ecprot);
 	}
 
