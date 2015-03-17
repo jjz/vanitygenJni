@@ -627,6 +627,6 @@ vanitygen(int argc, char **argv){
 
 }
 
-char ** getPrivatekey(){
+char** getPrivatekey(){
 	return privateKey;
 }

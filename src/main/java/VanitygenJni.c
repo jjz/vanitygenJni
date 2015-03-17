@@ -4,7 +4,7 @@
 #include <setjmp.h>
 #include <math.h>
 #include <stdint.h>
-#include "Vanitygen.h"
+#include "VanitygenJni.h"
 #include <stdio.h>
 #include "vanitygen/vanitygen.h"
 
@@ -41,7 +41,7 @@ jstring stoJstring(JNIEnv* env, const char* pat)
 }
 
 
-JNIEXPORT void JNICALL Java_Vanitygen_generateAddress
+JNIEXPORT void JNICALL Java_VanitygenJni_generateAddress
   (JNIEnv * env, jobject object, jstring string){
 
         printf("From jni :\n");
@@ -56,12 +56,32 @@ JNIEXPORT void JNICALL Java_Vanitygen_generateAddress
 
   }
 
-JNIEXPORT jobjectArray JNICALL Java_Vanitygen_getPrivaeKey
+JNIEXPORT jobjectArray JNICALL Java_VanitygenJni_getPrivaeKey
   (JNIEnv * env, jobject object){
+      jstring      str;
+      jobjectArray args = 0;
+      char** sa = getPrivatekey();
+      jsize len =2;
+      if(!sa){
+          printf("result isnull");
+          return NULL;
+      }
+      int          i=0;
+      args = (*env)->NewObjectArray(env,len,(*env)->FindClass(env,"java/lang/String"),0);
+      for( i=0; i < len; i++ )
+      {
+          str = stoJstring(env,sa[i]);
+          (*env)->SetObjectArrayElement(env,args, i, str);
+          free(sa[i]);
+          sa[i]=NULL;
+          str=NULL;
+      }
+      return args;
+
 
   }
 
-JNIEXPORT jobjectArray JNICALL Java_Vanitygen_getProgress
+JNIEXPORT jobjectArray JNICALL Java_VanitygenJni_getProgress
   (JNIEnv * env, jobject object){
 
   }
