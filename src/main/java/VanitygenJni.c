@@ -83,6 +83,24 @@ JNIEXPORT jobjectArray JNICALL Java_VanitygenJni_getPrivaeKey
 
 JNIEXPORT jobjectArray JNICALL Java_VanitygenJni_getProgress
   (JNIEnv * env, jobject object){
+        jdouble   str;
+        jobjectArray args = 0;
+        double* sa = getProgresses();
+        jsize len =2;
+        if(!sa){
+            printf("result isnull");
+            return NULL;
+        }
+        int          i=0;
+        args = (*env)->NewDoubleArray(env,len);
+        (*env)->SetDoubleArrayRegion(env,args,0,2,sa);
+//        for( i=0; i < len; i++ )
+//        {
+//            str = sa[i];
+//            (*env)->SetDoubleArrayRegion(env,args, i, str);
+//        }
+        return args;
+
 
   }
 

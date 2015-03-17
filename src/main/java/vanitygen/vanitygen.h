@@ -5,3 +5,4 @@
 extern int
 vanitygen(int argc, char **argv);
 char ** getPrivatekey();
+double * getProgresses();

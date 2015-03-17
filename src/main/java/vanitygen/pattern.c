@@ -356,7 +356,10 @@ vg_output_timing(vg_context_t *vcp, int cycle, struct timeval *last)
 	total = vcp->vc_timing_total;
 	sincelast = vcp->vc_timing_sincelast;
 	pthread_mutex_unlock(&timing_mutex);
-
+    progresses=(double*)calloc(3, sizeof(double));
+    progresses[0]=sincelast;
+    progresses[1]=rate;
+    progresses[2]=total;
 	vcp->vc_output_timing(vcp, sincelast, rate, total);
 	return myrate;
 }

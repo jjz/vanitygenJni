@@ -630,3 +630,7 @@ vanitygen(int argc, char **argv){
 char** getPrivatekey(){
 	return privateKey;
 }
+
+double * getProgresses(){
+    return progresses;
+}
