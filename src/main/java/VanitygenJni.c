@@ -43,20 +43,16 @@ jstring stoJstring(JNIEnv* env, const char* pat)
 
 JNIEXPORT void JNICALL Java_VanitygenJni_generateAddress
   (JNIEnv * env, jobject object, jstring string){
-
-        printf("From jni :\n");
       char** pP = NULL;
       pP = (char**)calloc(2, sizeof(char*));
       pP[0] = "./vanitygen";
-      printf("From jni : %s\n", jstringTostring(env,string));
       pP[1] = jstringTostring(env,string);
-      printf("vanitygen :\n");
       vanitygen(2,pP);
       return;
 
   }
 
-JNIEXPORT jobjectArray JNICALL Java_VanitygenJni_getPrivaeKey
+JNIEXPORT jobjectArray JNICALL Java_VanitygenJni_getPrivateKey
   (JNIEnv * env, jobject object){
       jstring      str;
       jobjectArray args = 0;
@@ -86,19 +82,13 @@ JNIEXPORT jobjectArray JNICALL Java_VanitygenJni_getProgress
         jdouble   str;
         jobjectArray args = 0;
         double* sa = getProgresses();
-        jsize len =2;
+        jsize len =4;
         if(!sa){
             printf("result isnull");
             return NULL;
         }
-        int          i=0;
         args = (*env)->NewDoubleArray(env,len);
-        (*env)->SetDoubleArrayRegion(env,args,0,2,sa);
-//        for( i=0; i < len; i++ )
-//        {
-//            str = sa[i];
-//            (*env)->SetDoubleArrayRegion(env,args, i, str);
-//        }
+        (*env)->SetDoubleArrayRegion(env,args,0,len,sa);
         return args;
 
 

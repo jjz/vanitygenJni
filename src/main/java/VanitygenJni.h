@@ -17,18 +17,18 @@ JNIEXPORT void JNICALL Java_VanitygenJni_generateAddress
 
 /*
  * Class:     VanitygenJni
- * Method:    getPrivaeKey
+ * Method:    getPrivateKey
  * Signature: ()[Ljava/lang/String;
  */
-JNIEXPORT jobjectArray JNICALL Java_VanitygenJni_getPrivaeKey
+JNIEXPORT jobjectArray JNICALL Java_VanitygenJni_getPrivateKey
   (JNIEnv *, jclass);
 
 /*
  * Class:     VanitygenJni
  * Method:    getProgress
- * Signature: ()[Ljava/lang/String;
+ * Signature: ()[D
  */
-JNIEXPORT jobjectArray JNICALL Java_VanitygenJni_getProgress
+JNIEXPORT jdoubleArray JNICALL Java_VanitygenJni_getProgress
   (JNIEnv *, jclass);
 
 #ifdef __cplusplus

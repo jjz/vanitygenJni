@@ -8,7 +8,7 @@ public class VanitygenJni {
 
     public static native void generateAddress(String address);
 
-    public static native String[] getPrivaeKey();
+    public static native String[] getPrivateKey();
 
     public static native double[] getProgress();
 
@@ -21,7 +21,7 @@ public class VanitygenJni {
             public void run() {
                 ISRUNNING = true;
                 generateAddress("1PPPQ");
-                String[] strings = getPrivaeKey();
+                String[] strings = getPrivateKey();
                 if (strings != null) {
                     for (String str : strings)
                         System.out.println("java :" + str);
@@ -37,8 +37,13 @@ public class VanitygenJni {
                 while (ISRUNNING) {
                     double[] doubleArray = getProgress();
                     if (doubleArray != null) {
-                        for (double dou : doubleArray) {
-                            System.out.println("dou:" + dou);
+                        String string = "";
+                        for (int i = 0; i < doubleArray.length; i++) {
+                            string = string + "," + doubleArray[i];
+                            if (i == doubleArray.length - 1) {
+                                // System.out.println(string);
+                                string = "";
+                            }
                         }
                     }
                     try {
