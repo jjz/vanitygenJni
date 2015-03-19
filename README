@@ -11,3 +11,7 @@ use jni in macos:http://ikinglai.blog.51cto.com/6220785/1212481
 5.gcc -dynamiclib -o libvanitygen.jnilib Main.o
 
 6.java Main
+
+
+
+git subtree add --prefix=vanitygen --squash  git@github.com:bither/vanitygen.git  master

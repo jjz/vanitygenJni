@@ -5,5 +5,5 @@ make
 cd ..
 make clean
 make
-javac VanitygenJni.java
-java VanitygenJni
+javac NativeUtil.java
+java NativeUtil

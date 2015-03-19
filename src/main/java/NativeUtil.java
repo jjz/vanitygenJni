@@ -1,7 +1,10 @@
 /**
  * Created by nn on 15/3/6.
  */
-public class VanitygenJni {
+
+
+
+public class NativeUtil {
     static {
         System.loadLibrary("vanitygen");
     }

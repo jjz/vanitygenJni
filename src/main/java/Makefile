@@ -24,7 +24,7 @@ endif
 LIBS=-lpcre -lcrypto -lm -lpthread
 
 
-OBJS=VanitygenJni.o
+OBJS=NativeUtil.o
 #CFLAGS=-dynamiclib
 
 all : libvanitygen.jnilib
@@ -32,11 +32,11 @@ LIBS+=-framework JavaVM
 
 CFLAGS          :=      $(CFLAGS) -I$(JAVA_HOME)/Headers -I$(vanitygenDir) -ggdb -O3 -Wall
 # $@ matches the target, $< matches the first dependancy
-libvanitygen.jnilib : VanitygenJni.o $(vanitygenDir)/vanitygen.o $(vanitygenDir)/pattern.o $(vanitygenDir)/util.o
+libvanitygen.jnilib : NativeUtil.o $(vanitygenDir)/vanitygen.o $(vanitygenDir)/pattern.o $(vanitygenDir)/util.o
 	$(CC) -shared -fpic $^ -o $@ $(CFLAGS) $(LIBS) $(OPENCL_LIBS)
 
 # $@ matches the target, $< matches the first dependancy
-VanitygenJni.o : VanitygenJni.c VanitygenJni.h
+NativeUtil.o : NativeUtil.c NativeUtil.h
 	gcc -dynamiclib -I$(JAVA_HOME)/Headers -c $< -o $@  
 
 # $* matches the target filename without the extension
