@@ -1,0 +1,54 @@
+#==================================Makefile Sample to SO lib====================
+#==================================Author:Arden.wang           =====================
+#==================================Email:ardentoto@126.com     =====================
+#==================================Time:20130807     =====================
+
+export MAKEROOT := $(shell pwd)
+CC = gcc
+OBJ = main.o print_main.o
+SRC_MAIN = $(MAKEROOT)/src/main.c $(MAKEROOT)/include/print_main.h
+SRC_PRINT_MAIN = $(MAKEROOT)/src/print_main.c $(MAKEROOT)/include/print_main.h
+OUT_OBJ_PATH = $(MAKEROOT)/obj
+
+vpath %.c src
+vpath %.h include
+
+INCLUDE_DIR := -I$(MAKEROOT)/include \
+-I$(MAKEROOT)/src \
+-I$(MAKEROOT)/obj \
+-I$(MAKEROOT)/bin \
+-I$(MAKEROOT)/lib
+
+CFLAGS := $(INCLUDE_DIR)
+
+#lib so
+SRC_LIB_FILE += $(MAKEROOT)/src/print_main.c
+SO_LIB_CFLAGS += -fPIC -shared -o
+OUT_SO_Lib := $(MAKEROOT)/lib/libprint_main.so
+
+#-L after path libso.
+#-lprint_main the file is cancle the lib and so.
+
+RUN_CFLAGS += -L$(MAKEROOT)/lib/ -lprint_main
+OUT_RUN := -o run
+
+SRC_MAIN = $(MAKEROOT)/src/main.c $(MAKEROOT)/include/print_main.h
+SRC_PRINT_MAIN = $(MAKEROOT)/src/print_main.c $(MAKEROOT)/include/print_main.h
+OUT_OBJ_PATH = $(MAKEROOT)/obj
+
+main : main.o libprint_main.so
+	$(CC) $(CFLAGS) $(MAKEROOT)/src/main.c $(RUN_CFLAGS) -o main
+main.o : $(SRC_MAIN)
+	$(CC) $(CFLAGS) -c $(MAKEROOT)/src/main.c -o $(OUT_OBJ_PATH)/$@
+libprint_main.so : $(SRC_PRINT_MAIN)
+	$(CC) $(CFLAGS) $(MAKEROOT)/src/print_main.c $(SO_LIB_CFLAGS) $(OUT_SO_Lib)
+.PHONY : clean
+clean:
+	rm -rf main
+	rm -rf $(MAKEROOT)/obj/*.o	
+	rm -rf $(MAKEROOT)/lib/*.so
+.PHONY : Libso
+Libso:
+	$(CC) $(CFLAGS) $(SRC_LIB_FILE) $(SO_LIB_CFLAGS) $(MAKEROOT)/lib/$(OUT_SO_Lib)
+	$(CC) $(CFLAGS) $(MAKEROOT)/src/main.c $(RUN_CFLAGS) $(OUT_RUN) 
+#	$(CC) $(CFLAGS) $(MAKEROOT)/src/main.c $(RUN_CFLAGS) $(OUT_RUN) 
