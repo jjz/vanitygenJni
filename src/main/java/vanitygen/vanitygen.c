@@ -363,7 +363,7 @@ main(int argc, char **argv)
 
 
 	int i;
-    fprintf(stderr,"argc:%d",argc);
+    fprintf(stderr,"argc:%d\n",argc);
 	while ((opt = getopt(argc, argv, "vqnrik1eE:P:NTX:F:t:h?f:o:s:")) != -1) {
 		switch (opt) {
 		case 'v':
@@ -628,9 +628,9 @@ vanitygen(int argc, char **argv){
 }
 
 char** getPrivatekey(){
-	return privateKey;
+	return NULL;
 }
 
 double * getProgresses(){
-    return progresses;
+    return NULL;
 }

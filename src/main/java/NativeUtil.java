@@ -6,7 +6,7 @@
 
 public class NativeUtil {
     static {
-        System.loadLibrary("vanitygen");
+        System.loadLibrary("NativeUtil");
     }
 
     public static native void generateAddress(String address);

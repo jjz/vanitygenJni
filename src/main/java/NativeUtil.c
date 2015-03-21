@@ -47,6 +47,7 @@ JNIEXPORT void JNICALL Java_NativeUtil_generateAddress
       pP = (char**)calloc(2, sizeof(char*));
       pP[0] = "./vanitygen";
       pP[1] = jstringTostring(env,string);
+printf("vanjni\n%s",pP[1]);
       vanitygen(2,pP);
       return;
 
