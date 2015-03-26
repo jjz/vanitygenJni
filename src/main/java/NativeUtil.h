@@ -10,10 +10,10 @@ extern "C" {
 /*
  * Class:     NativeUtil
  * Method:    generateAddress
- * Signature: (Ljava/lang/String;)V
+ * Signature: (Ljava/lang/String;Z)V
  */
 JNIEXPORT void JNICALL Java_NativeUtil_generateAddress
-  (JNIEnv *, jclass, jstring);
+  (JNIEnv *, jclass, jstring, jboolean);
 
 /*
  * Class:     NativeUtil

@@ -9,7 +9,7 @@ public class NativeUtil {
         System.loadLibrary("NativeUtil");
     }
 
-    public static native void generateAddress(String address, boolean );
+    public static native void generateAddress(String address, boolean ignore);
 
     public static native String[] getPrivateKey();
 
@@ -23,7 +23,7 @@ public class NativeUtil {
             @Override
             public void run() {
                 ISRUNNING = true;
-                generateAddress("1PPPQ");
+                generateAddress("1PQ",false);
                 String[] strings = getPrivateKey();
                 if (strings != null) {
                     for (String str : strings)

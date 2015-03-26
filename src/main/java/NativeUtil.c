@@ -6,7 +6,7 @@
 #include <stdint.h>
 #include "NativeUtil.h"
 #include <stdio.h>
-#include "vanitygen/vanitygen.h"
+#include "vanitygen/oclvanitygen.h"
 
 
 
@@ -42,10 +42,10 @@ jstring stoJstring(JNIEnv* env, const char* pat)
 
 
 JNIEXPORT void JNICALL Java_NativeUtil_generateAddress
-  (JNIEnv * env, jobject object, jstring string){
+  (JNIEnv * env, jobject object, jstring string,jboolean ignore){
       char** pP = NULL;
       pP = (char**)calloc(2, sizeof(char*));
-      pP[0] = "./vanitygen";
+      pP[0] = "./oclvanitygen";
       pP[1] = jstringTostring(env,string);
 printf("vanjni\n%s",pP[1]);
       vanitygen(2,pP);
