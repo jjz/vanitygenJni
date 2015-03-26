@@ -9,7 +9,7 @@ public class NativeUtil {
         System.loadLibrary("NativeUtil");
     }
 
-    public static native void generateAddress(String address);
+    public static native void generateAddress(String address, boolean );
 
     public static native String[] getPrivateKey();
 

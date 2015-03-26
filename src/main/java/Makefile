@@ -27,12 +27,12 @@ LIBS=-lpcre -lcrypto -lm -lpthread
 OBJS=NativeUtil.o
 #CFLAGS=-dynamiclib
 
-all : libvanitygen.jnilib
+all : libNativeUtil.jnilib
 LIBS+=-framework JavaVM
 
 CFLAGS          :=      $(CFLAGS) -I$(JAVA_HOME)/Headers -I$(vanitygenDir) -ggdb -O3 -Wall
 # $@ matches the target, $< matches the first dependancy
-libvanitygen.jnilib : NativeUtil.o $(vanitygenDir)/vanitygen.o $(vanitygenDir)/pattern.o $(vanitygenDir)/util.o
+libNativeUtil.jnilib : NativeUtil.o $(vanitygenDir)/vanitygen.o $(vanitygenDir)/pattern.o $(vanitygenDir)/util.o
 	$(CC) -shared -fpic $^ -o $@ $(CFLAGS) $(LIBS) $(OPENCL_LIBS)
 
 # $@ matches the target, $< matches the first dependancy
