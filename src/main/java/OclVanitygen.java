@@ -4,7 +4,7 @@ public class OclVanitygen {
         System.loadLibrary("oclvanitygen");
     }
 
-    public static native int oclGenerateAddress(String address, int equipment, boolean ignore);
+    public static native int oclGenerateAddress(String address, boolean ignore);
 
     public static native String[] oclGetPrivateKey();
 
@@ -26,12 +26,12 @@ public class OclVanitygen {
                 for (int i = 0; i < devices.length; i++) {
                     System.out.println("java-device:" + devices[i]);
                 }
-//                oclGenerateAddress("1PQPP", 0, true);
-//                String[] strings = oclGetPrivateKey();
-//                if (strings != null) {
-//                    for (String str : strings)
-//                        System.out.println("java :" + str);
-//                }
+                oclGenerateAddress("1PQPP,0:0", true);
+                String[] strings = oclGetPrivateKey();
+                if (strings != null) {
+                    for (String str : strings)
+                        System.out.println("java :" + str);
+                }
                 ISRUNNING = false;
 
             }

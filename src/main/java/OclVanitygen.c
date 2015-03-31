@@ -3,14 +3,22 @@
 #include "vanitygen/oclengine.h"
 #include "JniUtil.h"
 
+void split(char **arr, char *str, const char *del) {
+   char *s = strtok(str, del);
 
+   while(s != NULL) {
+     *arr++ = s;
+     s = strtok(NULL, del);
+   }
+ }
 
 JNIEXPORT jint JNICALL Java_OclVanitygen_oclGenerateAddress
-  (JNIEnv * env, jclass object, jstring string ,jint equipment, jboolean ignore){
+  (JNIEnv * env, jclass object, jstring input , jboolean ignore){
       char** params = NULL;
       printf("ocl\n");
       int index=0;
       int count=3;
+
       if(ignore){
          count++;
       }
@@ -18,9 +26,11 @@ JNIEXPORT jint JNICALL Java_OclVanitygen_oclGenerateAddress
       params[index] = "./oclvanitygen";
       index++;
       char * s;
-      sprintf(s, "-D %d:0", (int)equipment);
-      params[index]=s;
-
+     char * str= jstringTostring(env,input);
+     char ** pP= (char**)calloc(2, sizeof(char*));
+     split(pP,str,",");
+     sprintf(s, "-D %s",pP[1]);
+     params[index]=s;
       printf("oclvanjni:%s\n",s);
 
       index++;
@@ -28,8 +38,10 @@ JNIEXPORT jint JNICALL Java_OclVanitygen_oclGenerateAddress
          params[index]="-i";
          index++;
       }
-      params[index] = jstringTostring(env,string);
-      printf("oclvanjni\n");
+
+      printf("1\n");
+      params[index] = pP[0];
+      printf("2:%s\n",params[index]);
       return  oclvanitygen(count,params);
 
   }

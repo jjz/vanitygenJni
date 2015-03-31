@@ -10,10 +10,10 @@ extern "C" {
 /*
  * Class:     OclVanitygen
  * Method:    oclGenerateAddress
- * Signature: (Ljava/lang/String;IZ)I
+ * Signature: (Ljava/lang/String;Ljava/lang/String;Z)I
  */
 JNIEXPORT jint JNICALL Java_OclVanitygen_oclGenerateAddress
-  (JNIEnv *, jclass, jstring, jint, jboolean);
+  (JNIEnv *, jclass, jstring, jboolean);
 
 /*
  * Class:     OclVanitygen
