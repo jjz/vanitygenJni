@@ -1,0 +1,7 @@
+*.log
+*.linux~
+*.mac~
+/Makefile~
+*.class
+*.c~
+*.java~

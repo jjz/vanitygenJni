@@ -22,6 +22,7 @@ public class OclVanitygen {
             @Override
             public void run() {
                 ISRUNNING = true;
+ 		System.out.println("java:");
                 String[] devices = getDevices();
                 for (int i = 0; i < devices.length; i++) {
                     System.out.println("java-device:" + devices[i]);

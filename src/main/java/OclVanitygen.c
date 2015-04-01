@@ -23,14 +23,14 @@ JNIEXPORT jint JNICALL Java_OclVanitygen_oclGenerateAddress
          count++;
       }
       params = (char**)calloc(count, sizeof(char*));
-      params[index] = "./oclvanitygen";
+      params[index] = "./oclvanitygen";      
       index++;
-      char * s;
-     char * str= jstringTostring(env,input);
-     char ** pP= (char**)calloc(2, sizeof(char*));
-     split(pP,str,",");
-     sprintf(s, "-D %s",pP[1]);
-     params[index]=s;
+      char s[15];
+      char * str= jstringTostring(env,input);
+      char ** pP= (char**)calloc(2, sizeof(char*));
+      split(pP,str,",");
+      sprintf(s, "-D %s","0:0");
+      params[index]=s;
       printf("oclvanjni:%s\n",s);
 
       index++;
@@ -38,8 +38,6 @@ JNIEXPORT jint JNICALL Java_OclVanitygen_oclGenerateAddress
          params[index]="-i";
          index++;
       }
-
-      printf("1\n");
       params[index] = pP[0];
       printf("2:%s\n",params[index]);
       return  oclvanitygen(count,params);
