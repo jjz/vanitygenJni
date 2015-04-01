@@ -173,8 +173,8 @@ extern void vg_exec_context_downgrade_lock(vg_exec_context_t *vxcp);
 extern int vg_exec_context_upgrade_lock(vg_exec_context_t *vxcp);
 extern void vg_exec_context_yield(vg_exec_context_t *vxcp);
 
-extern char ** private_key();
-extern double * get_progresses;
+extern char ** get_private_key();
+extern double * get_progresses();
 
 
 #endif /* !defined (__VG_PATTERN_H__) */

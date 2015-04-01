@@ -1860,12 +1860,14 @@ vg_regex_context_new(int addrtype, int privtype)
 	return &vcrp->base;
 }
 
-char** private_key()
+char**
+get_private_key()
 {
 	return privateKey;
 }
 
-double * get_progresses
+double *
+get_progresses()
 {
 	return progresses;
 }

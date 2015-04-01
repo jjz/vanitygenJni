@@ -1,5 +1,6 @@
 #include "Vanitygen.h"
 #include "vanitygen/vanitygen.h"
+#include "vanitygen/pattern.h"
 #include "JniUtil.h"
 
 
@@ -28,7 +29,7 @@ JNIEXPORT jobjectArray JNICALL Java_Vanitygen_getPrivateKey
   (JNIEnv * env, jclass object){
       jstring      str;
       jobjectArray args = 0;
-      char** sa = getPrivatekey();
+      char** sa = get_private_key();
       jsize len =2;
       if(!sa){
           printf("result isnull");
@@ -53,7 +54,7 @@ JNIEXPORT jdoubleArray JNICALL Java_Vanitygen_getProgress
   (JNIEnv * env, jclass object){
         jdouble   str;
         jobjectArray args = 0;
-        double* sa = getProgresses();
+        double* sa = get_progresses();
         jsize len =4;
         if(!sa){
             printf("result isnull");

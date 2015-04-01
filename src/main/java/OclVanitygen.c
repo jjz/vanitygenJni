@@ -2,6 +2,7 @@
 #include "vanitygen/oclvanitygen.h"
 #include "vanitygen/oclengine.h"
 #include "JniUtil.h"
+#include "vanitygen/pattern.h"
 
 void split(char **arr, char *str, const char *del) {
    char *s = strtok(str, del);
@@ -48,7 +49,7 @@ JNIEXPORT jobjectArray JNICALL Java_OclVanitygen_oclGetPrivateKey
   (JNIEnv * env, jclass object){
       jstring      str;
       jobjectArray args = 0;
-      char** sa = oclgetPrivatekey();
+      char** sa = get_private_key();
       jsize len =2;
       if(!sa){
           printf("result isnull");
@@ -73,7 +74,7 @@ JNIEXPORT jdoubleArray JNICALL Java_OclVanitygen_oclGetProgress
   (JNIEnv * env, jclass object){
         jdouble   str;
         jobjectArray args = 0;
-        double* sa = oclgetProgresses();
+        double* sa = get_progresses();
         jsize len =4;
         if(!sa){
             printf("result isnull");

@@ -435,14 +435,3 @@ int oclvanitygen(int argc, char **argv){
     return main(argc,argv);
 }
 
-char ** oclgetPrivatekey(){
-    return privateKey;
-}
-
-double * oclgetProgresses(){
-    return progresses;
-}
-
-char ** getequipment(){
-    return NULL;
-}
