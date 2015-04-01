@@ -57,7 +57,7 @@ vg_thread_loop(void *arg)
 	const EC_GROUP *pgroup;
 	const EC_POINT *pgen;
 	const int ptarraysize = 256;
-	EC_POINT *ppnt[ptarraysize];
+	EC_POINT *ppnt[256];
 	EC_POINT *pbatchinc;
 
 	vg_test_func_t test_func = vcp->vc_test;

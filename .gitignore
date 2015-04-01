@@ -9,3 +9,6 @@ jniTest.iml
 *.oclbin
 *.obj
 *.pdb
+*.exp
+*.lib
+*.exe

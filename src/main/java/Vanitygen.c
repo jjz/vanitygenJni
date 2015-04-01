@@ -21,7 +21,8 @@ JNIEXPORT jint JNICALL Java_Vanitygen_generateAddress
       }
       pP[index] = jstringTostring(env,string);
       printf("vanjni\n%s",pP[1]);
-      return vanitygen(count,pP);
+	  return 0;
+	  //return vanitygen(count, pP);
 
   }
 
