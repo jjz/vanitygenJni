@@ -44,10 +44,6 @@ typedef struct _vg_exec_context_s vg_exec_context_t;
 
 typedef void *(*vg_exec_context_threadfunc_t)(vg_exec_context_t *);
 
-char ** privateKey;
-double * progresses;
-
-
 /* Context of one pattern-matching unit within the process */
 struct _vg_exec_context_s {
 	vg_context_t			*vxc_vc;
@@ -176,6 +172,9 @@ extern EC_KEY *vg_exec_context_new_key(void);
 extern void vg_exec_context_downgrade_lock(vg_exec_context_t *vxcp);
 extern int vg_exec_context_upgrade_lock(vg_exec_context_t *vxcp);
 extern void vg_exec_context_yield(vg_exec_context_t *vxcp);
+
+extern char ** private_key();
+extern double * get_progresses;
 
 
 #endif /* !defined (__VG_PATTERN_H__) */

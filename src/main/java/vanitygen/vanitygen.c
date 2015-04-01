@@ -607,15 +607,5 @@ main(int argc, char **argv)
 
 int
 vanitygen(int argc, char **argv){
-    main(argc,argv);
-}
-
-char **
-getPrivatekey(){
-    return privateKey;
-}
-
-double *
-getProgresses(){
-    return progresses;
+   return main(argc,argv);
 }

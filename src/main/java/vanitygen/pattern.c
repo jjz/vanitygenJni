@@ -55,6 +55,9 @@ static pthread_cond_t vg_thread_rdcond = PTHREAD_COND_INITIALIZER;
 static pthread_cond_t vg_thread_wrcond = PTHREAD_COND_INITIALIZER;
 static pthread_cond_t vg_thread_upcond = PTHREAD_COND_INITIALIZER;
 
+static char ** privateKey;
+static double * progresses;
+
 static void
 __vg_exec_context_yield(vg_exec_context_t *vxcp)
 {
@@ -686,7 +689,7 @@ vg_context_wait_for_completion(vg_context_t *vcp)
 	for (vxcp = vcp->vc_threads; vxcp != NULL; vxcp = vxcp->vxc_next) {
 		if (!vxcp->vxc_thread_active)
 			continue;
-		pthread_join((pthread_t) vxcp->vxc_pthread, NULL);
+		pthread_join(vxcp->vxc_pthread, NULL);
 		vxcp->vxc_thread_active = 0;
 	}
 }
@@ -1681,7 +1684,7 @@ vg_regex_context_add_patterns(vg_context_t *vcp,
 			pcre_study(vcrp->vcr_regex[nres], 0, &pcre_errptr);
 		if (pcre_errptr) {
 			fprintf(stderr, "Regex error: %s\n", pcre_errptr);
-			pcre_free(vcrp->vcr_regex[nres]);
+			free(vcrp->vcr_regex[nres]);
 			continue;
 		}
 		vcrp->vcr_regex_pat[nres] = patterns[i];
@@ -1703,8 +1706,8 @@ vg_regex_context_clear_all_patterns(vg_context_t *vcp)
 	int i;
 	for (i = 0; i < vcrp->base.vc_npatterns; i++) {
 		if (vcrp->vcr_regex_extra[i])
-			pcre_free(vcrp->vcr_regex_extra[i]);
-		pcre_free(vcrp->vcr_regex[i]);
+			free(vcrp->vcr_regex_extra[i]);
+		free(vcrp->vcr_regex[i]);
 	}
 	vcrp->base.vc_npatterns = 0;
 	vcrp->base.vc_npatterns_start = 0;
@@ -1807,9 +1810,10 @@ restart_loop:
 		}
 
 		if (vcrp->base.vc_remove_on_match) {
-			pcre_free(vcrp->vcr_regex[i]);
+			free(vcrp->vcr_regex[i]);
+			//pcre_free ->free (fix build in win64 :http://pcre.org/pcre.txt)
 			if (vcrp->vcr_regex_extra[i])
-				pcre_free(vcrp->vcr_regex_extra[i]);
+				free(vcrp->vcr_regex_extra[i]);
 			nres -= 1;
 			vcrp->base.vc_npatterns = nres;
 			if (!nres) {
@@ -1854,4 +1858,14 @@ vg_regex_context_new(int addrtype, int privtype)
 		vcrp->vcr_nalloc = 0;
 	}
 	return &vcrp->base;
+}
+
+char** private_key()
+{
+	return privateKey;
+}
+
+double * get_progresses
+{
+	return progresses;
 }

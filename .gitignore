@@ -7,3 +7,5 @@ gradlew
 gradlew.bat
 jniTest.iml
 *.oclbin
+*.obj
+*.pdb
