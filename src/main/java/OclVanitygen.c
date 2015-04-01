@@ -29,7 +29,7 @@ JNIEXPORT jint JNICALL Java_OclVanitygen_oclGenerateAddress
       char * str= jstringTostring(env,input);
       char ** pP= (char**)calloc(2, sizeof(char*));
       split(pP,str,",");
-      sprintf(s, "-D %s","0:0");
+      sprintf(s, "-D %s",pP[1]);
       params[index]=s;
       printf("oclvanjni:%s\n",s);
 

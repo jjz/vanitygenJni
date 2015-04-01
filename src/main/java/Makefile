@@ -11,11 +11,8 @@ OPENCL_LIBS=-lOpenCL
 
 
 
-#OBJS=NativeUtil.o
-#CFLAGS=-dynamiclib
-
 all : libvanitygen.so liboclvanitygen.so
-#LIBS+=-framework JavaVM
+
 
 CFLAGS          :=      $(CFLAGS) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux -I$(vanitygenDir) -ggdb -O3 -Wall -D WHITH_PKCS5_PBKDF2_HMAC=1
 # $@ matches the target, $< matches the first dependancy
@@ -28,11 +25,6 @@ libvanitygen.so : Vanitygen.c Vanitygen.h JniUtil.c JniUtil.h $(vanitygenDir)/va
 liboclvanitygen.so : OclVanitygen.c OclVanitygen.h JniUtil.c JniUtil.h $(vanitygenDir)/oclvanitygen.c $(vanitygenDir)/oclvanitygen.h $(vanitygenDir)/oclengine.c $(vanitygenDir)/oclengine.h $(vanitygenDir)/pattern.c $(vanitygenDir)/pattern.h $(vanitygenDir)/util.c $(vanitygenDir)/util.h
 	$(CC) -shared -fpic $^ -o $@ $(CFLAGS) $(LIBS) $(OPENCL_LIBS)
 
-
-#NativeUtil.o : NativeUtil.c NativeUtil.h
-#	gcc -shared -fpic $(CFLAGS) -c $(MAKEROOT)/NativeUtil.c -o NativeUtil.o 
-
 clean:
 	rm -rf *.o
-	rm -rf *.jnilib
 	rm -rf *.so
