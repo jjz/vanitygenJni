@@ -6,12 +6,21 @@
 JNIEXPORT void JNICALL Java_Vanitygen_generateAddress
   (JNIEnv * env, jclass object, jstring string,jboolean ignore){
       char** pP = NULL;
-      pP = (char**)calloc(2, sizeof(char*));
-      pP[0] = "./vanitygen";
-      pP[1] = jstringTostring(env,string);
+      int index=0;
+      int count=2;
+      if(ignore){
+        count++;
+      }
+      pP = (char**)calloc(count, sizeof(char*));
+      pP[index] = "./vanitygen";
+      index++;
+      if(ignore){
+        pP[index]="-i";
+        index++;
+      }
+      pP[index] = jstringTostring(env,string);
       printf("vanjni\n%s",pP[1]);
-      vanitygen(2,pP);
-      return;
+      vanitygen(count,pP);
 
   }
 

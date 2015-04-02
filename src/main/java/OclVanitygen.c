@@ -5,12 +5,13 @@
 
 
 JNIEXPORT void JNICALL Java_OclVanitygen_oclGenerateAddress
-  (JNIEnv * env, jclass object, jstring string,jboolean ignore){
+  (JNIEnv * env, jclass object, jstring string , jboolean ignore){
       char** pP = NULL;
+      printf("ocl\n");
       pP = (char**)calloc(2, sizeof(char*));
       pP[0] = "./oclvanitygen";
       pP[1] = jstringTostring(env,string);
-      printf("vanjni\n%s",pP[1]);
+      printf("oclvanjni\n%s",pP[1]);
       oclvanitygen(2,pP);
       return;
 

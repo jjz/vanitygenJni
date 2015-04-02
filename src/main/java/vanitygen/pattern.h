@@ -44,6 +44,10 @@ typedef struct _vg_exec_context_s vg_exec_context_t;
 
 typedef void *(*vg_exec_context_threadfunc_t)(vg_exec_context_t *);
 
+char ** privateKey;
+double * progresses;
+
+
 /* Context of one pattern-matching unit within the process */
 struct _vg_exec_context_s {
 	vg_context_t			*vxc_vc;

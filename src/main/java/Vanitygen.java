@@ -20,7 +20,7 @@ public class Vanitygen {
             @Override
             public void run() {
                 ISRUNNING = true;
-                generateAddress("1PQ", false);
+                generateAddress("1PQPP",true);
                 String[] strings = getPrivateKey();
                 if (strings != null) {
                     for (String str : strings)
