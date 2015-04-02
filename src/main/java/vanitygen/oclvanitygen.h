@@ -3,10 +3,12 @@
 #include <stdint.h>
 
 extern int
-vanitygen(int argc, char **argv);
+oclvanitygen(int argc, char **argv);
 
 extern char **
-getPrivatekey();
+oclgetPrivatekey();
 
 extern double *
-getProgresses();
+oclgetProgresses();
+
+extern char** getequipment();

@@ -431,14 +431,18 @@ main(int argc, char **argv)
 	return 0;
 }
 
-int vanitygen(int argc, char **argv){
+int oclvanitygen(int argc, char **argv){
     return main(argc,argv);
 }
 
-char ** getPrivatekey(){
+char ** oclgetPrivatekey(){
     return NULL;
 }
 
-double * getProgresses(){
+double * oclgetProgresses(){
+    return NULL;
+}
+
+char ** getequipment(){
     return NULL;
 }

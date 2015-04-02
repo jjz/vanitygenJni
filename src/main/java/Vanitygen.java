@@ -1,12 +1,7 @@
-/**
- * Created by nn on 15/3/6.
- */
 
-
-
-public class NativeUtil {
+public class Vanitygen {
     static {
-        System.loadLibrary("NativeUtil");
+        System.loadLibrary("vanitygen");
     }
 
     public static native void generateAddress(String address, boolean ignore);
@@ -23,7 +18,7 @@ public class NativeUtil {
             @Override
             public void run() {
                 ISRUNNING = true;
-                generateAddress("1PQ",false);
+                generateAddress("1PQ", false);
                 String[] strings = getPrivateKey();
                 if (strings != null) {
                     for (String str : strings)

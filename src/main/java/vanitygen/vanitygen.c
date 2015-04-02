@@ -603,3 +603,19 @@ main(int argc, char **argv)
 		return 1;
 	return 0;
 }
+
+
+int
+vanitygen(int argc, char **argv){
+    main(argc,argv);
+}
+
+char **
+getPrivatekey(){
+    return NULL;
+}
+
+double *
+getProgresses(){
+    return NULL;
+}
