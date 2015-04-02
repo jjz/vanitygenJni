@@ -23,7 +23,7 @@ endif
 LIBS=-lpcre -lcrypto -lm -lpthread
 
 
-OBJS=Vanitygen.o OclVanitygen.o JniUtil.o
+OBJS=NVanitygen.o NOclVanitygen.o JniUtil.o
 #CFLAGS=-dynamiclib
 
 all : libvanitygen.jnilib liboclvanitygen.jnilib
@@ -32,17 +32,17 @@ LIBS+=-framework JavaVM
 CFLAGS          :=      $(CFLAGS) -I$(JAVA_HOME)/Headers -I$(vanitygenDir) -ggdb -O3 -Wall
 
 
-liboclvanitygen.jnilib : OclVanitygen.o JniUtil.o $(vanitygenDir)/oclvanitygen.o $(vanitygenDir)/oclengine.o $(vanitygenDir)/pattern.o $(vanitygenDir)/util.o
+liboclvanitygen.jnilib : NOclVanitygen.o JniUtil.o $(vanitygenDir)/oclvanitygen.o $(vanitygenDir)/oclengine.o $(vanitygenDir)/pattern.o $(vanitygenDir)/util.o
 	$(CC) -shared -fpic $^ -o $@ $(CFLAGS) $(LIBS) $(OPENCL_LIBS)
 	
-libvanitygen.jnilib : Vanitygen.o JniUtil.o $(vanitygenDir)/vanitygen.o $(vanitygenDir)/pattern.o $(vanitygenDir)/util.o
+libvanitygen.jnilib : NVanitygen.o JniUtil.o $(vanitygenDir)/vanitygen.o $(vanitygenDir)/pattern.o $(vanitygenDir)/util.o
 	$(CC) -shared -fpic $^ -o $@ $(CFLAGS) $(LIBS) $(OPENCL_LIBS)
 
 # $@ matches the target, $< matches the first dependancy
-Vanitygen.o : Vanitygen.c Vanitygen.h 
+Vanitygen.o : NVanitygen.c NVanitygen.h
 	gcc -dynamiclib -I$(JAVA_HOME)/Headers -c $< -o $@  
 	
-OclVanitygen.o : OclVanitygen.c OclVanitygen.h
+OclVanitygen.o : NOclVanitygen.c NOclVanitygen.h
 	gcc -dynamiclib -I$(JAVA_HOME)/Headers -c $< -o $@
 	 
 JniUtil.o : JniUtil.c JniUtil.h 

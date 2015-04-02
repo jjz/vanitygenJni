@@ -1,4 +1,4 @@
-#include "OclVanitygen.h"
+#include "NOclVanitygen.h"
 #include "vanitygen/oclvanitygen.h"
 #include "vanitygen/oclengine.h"
 #include "JniUtil.h"
