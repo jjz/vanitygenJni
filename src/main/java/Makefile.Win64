@@ -30,4 +30,4 @@ c.obj:
 
 
 clean:
-	del  $(OBJS) vanitygen.dll
+	del  $(OBJS) vanitygen.dll oclvanitygen.dll

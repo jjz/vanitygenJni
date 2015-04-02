@@ -1,3 +1,4 @@
+import java.lang.System;
 
 public class OclVanitygen {
     static {
@@ -27,6 +28,7 @@ public class OclVanitygen {
                 for (int i = 0; i < devices.length; i++) {
                     System.out.println("java-device:" + devices[i]);
                 }
+                System.out.println("oclGenerateAddress");
                 oclGenerateAddress("1PQPP,0:0", true);
                 String[] strings = oclGetPrivateKey();
                 if (strings != null) {
