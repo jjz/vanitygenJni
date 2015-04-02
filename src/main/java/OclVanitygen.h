@@ -33,10 +33,18 @@ JNIEXPORT jdoubleArray JNICALL Java_OclVanitygen_oclGetProgress
 
 /*
  * Class:     OclVanitygen
- * Method:    oclGetEquipment
+ * Method:    getEquipment
  * Signature: ()[Ljava/lang/String;
  */
-JNIEXPORT jobjectArray JNICALL Java_OclVanitygen_oclGetEquipment
+JNIEXPORT jobjectArray JNICALL Java_OclVanitygen_getEquipment
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     OclVanitygen
+ * Method:    oclQuit
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_OclVanitygen_oclQuit
   (JNIEnv *, jclass);
 
 #ifdef __cplusplus

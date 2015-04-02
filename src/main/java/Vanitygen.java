@@ -10,6 +10,8 @@ public class Vanitygen {
 
     public static native double[] getProgress();
 
+    public static native void quit();
+
     public static boolean ISRUNNING = true;
 
     public static void main(String[] args) {

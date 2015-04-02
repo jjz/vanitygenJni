@@ -63,3 +63,8 @@ JNIEXPORT jdoubleArray JNICALL Java_OclVanitygen_oclGetProgress
         return NULL;
 
  }
+
+ JNIEXPORT void JNICALL Java_OclVanitygen_oclQuit
+   (JNIEnv * env, jclass object){
+
+   }

@@ -31,6 +31,14 @@ JNIEXPORT jobjectArray JNICALL Java_Vanitygen_getPrivateKey
 JNIEXPORT jdoubleArray JNICALL Java_Vanitygen_getProgress
   (JNIEnv *, jclass);
 
+/*
+ * Class:     Vanitygen
+ * Method:    quit
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_Vanitygen_quit
+  (JNIEnv *, jclass);
+
 #ifdef __cplusplus
 }
 #endif

@@ -4,7 +4,7 @@
 
 
 JNIEXPORT void JNICALL Java_Vanitygen_generateAddress
-  (JNIEnv * env, jobject object, jstring string,jboolean ignore){
+  (JNIEnv * env, jclass object, jstring string,jboolean ignore){
       char** pP = NULL;
       pP = (char**)calloc(2, sizeof(char*));
       pP[0] = "./vanitygen";
@@ -16,7 +16,7 @@ JNIEXPORT void JNICALL Java_Vanitygen_generateAddress
   }
 
 JNIEXPORT jobjectArray JNICALL Java_Vanitygen_getPrivateKey
-  (JNIEnv * env, jobject object){
+  (JNIEnv * env, jclass object){
       jstring      str;
       jobjectArray args = 0;
       char** sa = getPrivatekey();
@@ -41,7 +41,7 @@ JNIEXPORT jobjectArray JNICALL Java_Vanitygen_getPrivateKey
   }
 
 JNIEXPORT jdoubleArray JNICALL Java_Vanitygen_getProgress
-  (JNIEnv * env, jobject object){
+  (JNIEnv * env, jclass object){
         jdouble   str;
         jobjectArray args = 0;
         double* sa = getProgresses();
@@ -57,4 +57,8 @@ JNIEXPORT jdoubleArray JNICALL Java_Vanitygen_getProgress
 
   }
 
+JNIEXPORT void JNICALL Java_Vanitygen_quit
+  (JNIEnv * env, jclass object){
+
+ }
 
