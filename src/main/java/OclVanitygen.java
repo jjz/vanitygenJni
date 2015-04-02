@@ -10,7 +10,7 @@ public class OclVanitygen {
 
     public static native double[] oclGetProgress();
 
-    public static native String[] getEquipment();
+    public static native String[] getDevices();
 
     public static native void oclQuit();
 
@@ -22,12 +22,16 @@ public class OclVanitygen {
             @Override
             public void run() {
                 ISRUNNING = true;
-                oclGenerateAddress("1PQPP", 0, true);
-                String[] strings = oclGetPrivateKey();
-                if (strings != null) {
-                    for (String str : strings)
-                        System.out.println("java :" + str);
+                String[] devices = getDevices();
+                for (int i = 0; i < devices.length; i++) {
+                    System.out.println("java-device:" + devices[i]);
                 }
+//                oclGenerateAddress("1PQPP", 0, true);
+//                String[] strings = oclGetPrivateKey();
+//                if (strings != null) {
+//                    for (String str : strings)
+//                        System.out.println("java :" + str);
+//                }
                 ISRUNNING = false;
 
             }

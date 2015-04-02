@@ -34,6 +34,6 @@ extern vg_ocl_context_t *vg_ocl_context_new_from_devstr(
 	vg_context_t *vcp, const char *devstr, int safemode, int verify)
 ;
 
-extern void vg_ocl_enumerate_devices(void);
+extern char ** vg_ocl_enumerate_devices(void);
 
 #endif /* !defined (__VG_OCLENGINE_H__) */

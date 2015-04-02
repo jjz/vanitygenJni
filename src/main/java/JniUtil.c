@@ -31,3 +31,18 @@ jstring stoJstring(JNIEnv* env, const char* pat)
        jstring encoding = (*env)->NewStringUTF(env,"utf-8");
        return (jstring)(*env)->NewObject(env,strClass, ctorID, bytes, encoding);
 }
+
+int getlen(char *result)
+  {
+      int i=0;
+      if(result==NULL){
+        return 0;
+      }
+      while(result[i]!='\0')
+      {
+          i++;
+
+      }
+      return i;
+
+  }

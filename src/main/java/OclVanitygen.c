@@ -1,35 +1,36 @@
 #include "OclVanitygen.h"
 #include "vanitygen/oclvanitygen.h"
+#include "vanitygen/oclengine.h"
 #include "JniUtil.h"
 
 
 
 JNIEXPORT jint JNICALL Java_OclVanitygen_oclGenerateAddress
   (JNIEnv * env, jclass object, jstring string ,jint equipment, jboolean ignore){
-      char** pP = NULL;
+      char** params = NULL;
       printf("ocl\n");
       int index=0;
       int count=3;
       if(ignore){
          count++;
       }
-      pP = (char**)calloc(count, sizeof(char*));
-      pP[index] = "./oclvanitygen";
+      params = (char**)calloc(count, sizeof(char*));
+      params[index] = "./oclvanitygen";
       index++;
       char * s;
       sprintf(s, "-D %d:0", (int)equipment);
-      pP[index]=s;
+      params[index]=s;
 
       printf("oclvanjni:%s\n",s);
 
       index++;
       if(ignore){
-         pP[index]="-i";
+         params[index]="-i";
          index++;
       }
-      pP[index] = jstringTostring(env,string);
+      params[index] = jstringTostring(env,string);
       printf("oclvanjni\n");
-      return  oclvanitygen(count,pP);
+      return  oclvanitygen(count,params);
 
   }
 
@@ -75,9 +76,30 @@ JNIEXPORT jdoubleArray JNICALL Java_OclVanitygen_oclGetProgress
 
   }
 
- JNIEXPORT jobjectArray JNICALL Java_OclVanitygen_oclGetEquipment
+ JNIEXPORT jobjectArray JNICALL Java_OclVanitygen_getDevices
     (JNIEnv * env, jclass object){
-        return NULL;
+        jstring      str;
+        jobjectArray args = 0;
+        char** sa = vg_ocl_enumerate_devices();
+        jint len =0;
+        while(getlen(sa[len])>0){
+            ++len;
+        }
+        if(!sa){
+            printf("result isnull");
+            return NULL;
+        }
+         int i=0;
+         args = (*env)->NewObjectArray(env,len,(*env)->FindClass(env,"java/lang/String"),0);
+         for( i=0; i < len; i++ )
+         {
+            str = stoJstring(env,sa[i]);
+            (*env)->SetObjectArrayElement(env,args, i, str);
+            free(sa[i]);
+            sa[i]=NULL;
+            str=NULL;
+         }
+         return args;
 
  }
 

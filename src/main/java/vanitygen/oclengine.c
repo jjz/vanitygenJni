@@ -2286,12 +2286,14 @@ get_device_list(cl_platform_id pid, cl_device_id **list_out)
 	return nd;
 }
 
-static void
+static char *
 show_devices(cl_platform_id pid, cl_device_id *ids, int nd, int base)
 {
 	int i;
 	char nbuf[128];
 	char vbuf[128];
+	char * deviceinfos;
+	deviceinfos=(char*)calloc(nd*128, sizeof(char));
 	size_t len;
 	cl_int res;
 
@@ -2311,7 +2313,14 @@ show_devices(cl_platform_id pid, cl_device_id *ids, int nd, int base)
 			len = sizeof(vbuf) - 1;
 		vbuf[len] = '\0';
 		fprintf(stderr, "  %d: [%s] %s\n", i + base, vbuf, nbuf);
+		if(i>0){
+		    sprintf(deviceinfos,"%s,%s",deviceinfos,nbuf);
+		}else{
+		    sprintf(deviceinfos,"%s",nbuf);
+		}
+
 	}
+	return deviceinfos;
 }
 
 static cl_device_id
@@ -2434,28 +2443,33 @@ get_platform(int num)
 	return NULL;
 }
 
-void
+char **
 vg_ocl_enumerate_devices(void)
 {
 	cl_platform_id *pids;
 	cl_device_id *dids;
 	int np, nd, i;
+    char ** deviceinfos;
 
 	np = get_platform_list(&pids);
 	if (!np) {
 		fprintf(stderr, "No OpenCL platforms available\n");
-		return;
+		return NULL;
 	}
 	fprintf(stderr, "Available OpenCL platforms:\n");
+	deviceinfos = (char**)calloc(np, sizeof(char*));
 	for (i = 0; i < np; i++) {
 		show_platforms(&pids[i], 1, i);
 		nd = get_device_list(pids[i], &dids);
 		if (!nd) {
 			fprintf(stderr, "  -- No devices\n");
 		} else {
-			show_devices(pids[i], dids, nd, 0);
+			char * device=show_devices(pids[i], dids, nd, 0);
+			deviceinfos[i]=device;
+
 		}
 	}
+	return deviceinfos;
 }
 
 static cl_device_id
