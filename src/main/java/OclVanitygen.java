@@ -4,7 +4,7 @@ public class OclVanitygen {
         System.loadLibrary("oclvanitygen");
     }
 
-    public static native void oclGenerateAddress(String address, boolean ignore);
+    public static native int oclGenerateAddress(String address, int equipment, boolean ignore);
 
     public static native String[] oclGetPrivateKey();
 
@@ -22,7 +22,7 @@ public class OclVanitygen {
             @Override
             public void run() {
                 ISRUNNING = true;
-                oclGenerateAddress("1PQ", false);
+                oclGenerateAddress("1PQPP", 0, true);
                 String[] strings = oclGetPrivateKey();
                 if (strings != null) {
                     for (String str : strings)
@@ -43,7 +43,7 @@ public class OclVanitygen {
                         for (int i = 0; i < doubleArray.length; i++) {
                             string = string + "," + doubleArray[i];
                             if (i == doubleArray.length - 1) {
-                                // System.out.println(string);
+                                System.out.println(string);
                                 string = "";
                             }
                         }

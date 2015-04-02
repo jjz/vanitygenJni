@@ -3,7 +3,7 @@
 #include "JniUtil.h"
 
 
-JNIEXPORT void JNICALL Java_Vanitygen_generateAddress
+JNIEXPORT jint JNICALL Java_Vanitygen_generateAddress
   (JNIEnv * env, jclass object, jstring string,jboolean ignore){
       char** pP = NULL;
       int index=0;
@@ -20,7 +20,7 @@ JNIEXPORT void JNICALL Java_Vanitygen_generateAddress
       }
       pP[index] = jstringTostring(env,string);
       printf("vanjni\n%s",pP[1]);
-      vanitygen(count,pP);
+      return vanitygen(count,pP);
 
   }
 

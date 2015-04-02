@@ -4,7 +4,7 @@ public class Vanitygen {
         System.loadLibrary("vanitygen");
     }
 
-    public static native void generateAddress(String address, boolean ignore);
+    public static native int generateAddress(String address, boolean ignore);
 
     public static native String[] getPrivateKey();
 
@@ -20,7 +20,7 @@ public class Vanitygen {
             @Override
             public void run() {
                 ISRUNNING = true;
-                generateAddress("1PQPP",true);
+                generateAddress("1PQPP", true);
                 String[] strings = getPrivateKey();
                 if (strings != null) {
                     for (String str : strings)

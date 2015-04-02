@@ -4,16 +4,32 @@
 
 
 
-JNIEXPORT void JNICALL Java_OclVanitygen_oclGenerateAddress
-  (JNIEnv * env, jclass object, jstring string , jboolean ignore){
+JNIEXPORT jint JNICALL Java_OclVanitygen_oclGenerateAddress
+  (JNIEnv * env, jclass object, jstring string ,jint equipment, jboolean ignore){
       char** pP = NULL;
       printf("ocl\n");
-      pP = (char**)calloc(2, sizeof(char*));
-      pP[0] = "./oclvanitygen";
-      pP[1] = jstringTostring(env,string);
-      printf("oclvanjni\n%s",pP[1]);
-      oclvanitygen(2,pP);
-      return;
+      int index=0;
+      int count=3;
+      if(ignore){
+         count++;
+      }
+      pP = (char**)calloc(count, sizeof(char*));
+      pP[index] = "./oclvanitygen";
+      index++;
+      char * s;
+      sprintf(s, "-D %d:0", (int)equipment);
+      pP[index]=s;
+
+      printf("oclvanjni:%s\n",s);
+
+      index++;
+      if(ignore){
+         pP[index]="-i";
+         index++;
+      }
+      pP[index] = jstringTostring(env,string);
+      printf("oclvanjni\n");
+      return  oclvanitygen(count,pP);
 
   }
 

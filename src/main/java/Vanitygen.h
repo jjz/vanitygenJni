@@ -10,9 +10,9 @@ extern "C" {
 /*
  * Class:     Vanitygen
  * Method:    generateAddress
- * Signature: (Ljava/lang/String;Z)V
+ * Signature: (Ljava/lang/String;Z)I
  */
-JNIEXPORT void JNICALL Java_Vanitygen_generateAddress
+JNIEXPORT jint JNICALL Java_Vanitygen_generateAddress
   (JNIEnv *, jclass, jstring, jboolean);
 
 /*
