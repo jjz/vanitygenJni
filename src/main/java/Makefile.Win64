@@ -14,13 +14,19 @@ CPPFLAGS=$(CPPFLAGS) /LD
 LFLAGS=$(LFLAGS) /DLL
 LIBS = $(PTHREADS_DIR)\lib\pthreadVC2.lib  $(PCRE_DIR)\lib\x64\pcre3.lib  $(OPENSSL_DIR)\lib\libeay32.lib $(OPENSSL_DIR)\lib\ssleay32.lib  ws2_32.lib user32.lib advapi32.lib gdi32.lib  
 
+OBJS = NVanitygen.obj JniUtil.obj vanitygen.obj pattern.obj pattern.obj
 
 all: vanitygen.dll
 
-vanitygen.dll : Vanitygen.c JniUtil.c  vanitygen/pattern.c vanitygen/util.c vanitygen/winglue.c vanitygen/vanitygen.c
+vanitygen.dll : NVanitygen.c JniUtil.c vanitygen/vanitygen.c  vanitygen/pattern.c vanitygen/util.c vanitygen/winglue.c
 	cl $(CFLAGS_BASE) $(OPENCL_INCLUDE) $(LIBS)  /LD   /Fevanitygen.dll $(LFLAGS) $** $(CFLAGS)
+
+
+oclvanitygen.dll : OclVanitygen.c  JniUtil.c vanitygen/pattern.c vanitygen/util.c vanitygen/winglue.c vanitygen/oclvanitygen.c vanitygen/oclengine.c
+	cl $(CFLAGS_BASE) $(OPENCL_INCLUDE) $(LIBS) $(OPENCL_LIBS)  /LD   /Feoclvanitygen.dll $(LFLAGS) $** $(CFLAGS)
+
 
 
 
 clean:
-	del vanitygen.dll $(OBJS)
+	del  $(OBJS) vanitygen.dll

@@ -1,8 +1,7 @@
-#include "Vanitygen.h"
+#include "NVanitygen.h"
 #include "vanitygen/vanitygen.h"
 #include "vanitygen/pattern.h"
 #include "JniUtil.h"
-
 
 JNIEXPORT jint JNICALL Java_Vanitygen_generateAddress
   (JNIEnv * env, jclass object, jstring string,jboolean ignore){
@@ -21,6 +20,7 @@ JNIEXPORT jint JNICALL Java_Vanitygen_generateAddress
       }
       pP[index] = jstringTostring(env,string);
       printf("vanjni\n%s",pP[1]);
+
 	  return vanitygen(count, pP);
 
   }
