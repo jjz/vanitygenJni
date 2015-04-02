@@ -75,7 +75,7 @@ JNIEXPORT jdoubleArray JNICALL Java_OclVanitygen_oclGetProgress
 
 
   }
-
+//0:Appl,0:Intel(R) Core(TM) i7-2640M CPU @ 2.80GHz
  JNIEXPORT jobjectArray JNICALL Java_OclVanitygen_getDevices
     (JNIEnv * env, jclass object){
         jstring      str;
