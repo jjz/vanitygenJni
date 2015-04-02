@@ -55,4 +55,4 @@ JniUtil.o : JniUtil.c JniUtil.h
 clean:
 	rm -rf *.o
 	rm -rf *.jnilib
-	rm -rf *.so
+	
